@@ -15,7 +15,7 @@ const toDoList = [
     index: 3,
   },
   {
-    description: 'Complete To Do list project3',
+    description: 'Complete To Do list',
     completed: false,
     index: 4,
   },
@@ -29,6 +29,7 @@ const displaytdlist = () => {
     li.className = 'task';
     const input = document.createElement('input');
     input.setAttribute('type', 'checkbox');
+    input.className = 'checkbox';
     li.setAttribute('id', `${task.index}`);
     const p = document.createElement('p');
     p.className = 'description';
