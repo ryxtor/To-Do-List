@@ -1,4 +1,22 @@
-import displaytdlist from './modules/displaytdlist.js';
+import toDoList from './modules/todoclass.js';
 import './style.css';
+import enterIcon from './enter.png';
 
-displaytdlist();
+const createEnterIcon = () => {
+  const formContainer = document.querySelector('.input-container');
+  const enIcon = new Image();
+  enIcon.src = enterIcon;
+  enIcon.setAttribute('id', 'enterInput');
+  enIcon.classList = 'enterInput';
+  enIcon.setAttribute('alt', 'enter-icon');
+  formContainer.appendChild(enIcon);
+};
+
+createEnterIcon();
+
+const runClass = new toDoList();
+runClass.displaytdlist();
+const btnTask = document.getElementById('enterInput');
+btnTask.addEventListener('click', () => {
+runClass.addTask();
+})

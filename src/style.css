@@ -36,6 +36,10 @@ body {
   font-size: 1rem;
 }
 
+.input:focus-visible {
+  outline: auto 0;
+}
+
 .checkbox {
   margin: 0 1rem;
 }
@@ -51,4 +55,28 @@ body {
   height: 3rem;
   border: none;
   cursor: pointer;
+}
+
+.enterInput {
+  width: 24px;
+  height: 24px;
+  padding: 13px;
+  border-bottom: 1px solid #eee;
+  border-top: 1px solid #eee;
+  cursor: pointer;
+}
+
+.input-container {
+  display: flex;
+}
+
+.deleteTask {
+  width: 24px;
+  height: 24px;
+  padding: 13px;
+  cursor: pointer;
+}
+
+.description {
+  width: 100%;
 }
