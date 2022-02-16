@@ -71,6 +71,7 @@ export default class ToDoList {
       li.appendChild(delIcon);
       ul.appendChild(li);
     });
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
   }
 
   addTask() {
@@ -103,18 +104,29 @@ export default class ToDoList {
   }
 
   completeTask(task) {
-const taskList = task.parentElement.children;
+    const taskList = task.parentElement.children;
 
-for (let i = 0; i < taskList.length; i++) {
-  if (taskList[i] === task) {
-    if (this.tasks[i].completed === false) {
-      this.tasks[i].completed = true;
-    } else {
-      this.tasks[i].completed = false;
+    for (let i = 0; i < taskList.length; i += 1) {
+      if (taskList[i] === task) {
+        if (this.tasks[i].completed === false) {
+          this.tasks[i].completed = true;
+        } else {
+          this.tasks[i].completed = false;
+        }
+      }
     }
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
+    this.displaytdlist();
   }
-}
-localStorage.setItem('tasks', JSON.stringify(this.tasks));
-this.displaytdlist();
+
+  delCompletedTasks() {
+    const array = [];
+    for (let i = 0; i < this.tasks.length; i += 1) {
+      if (this.tasks[i].completed === false) {
+        array.push(this.tasks[i]);
+      }
+    }
+    localStorage.setItem('tasks', JSON.stringify(array));
+    this.displaytdlist();
   }
 }

@@ -26,3 +26,8 @@ enterTask.addEventListener('keypress', (e) => {
     runClass.addTask();
   }
 });
+
+const delCompletedbtn = document.getElementById('clear-btn');
+delCompletedbtn.addEventListener('click', () => {
+  runClass.delCompletedTasks();
+});
