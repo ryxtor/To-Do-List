@@ -19,27 +19,35 @@ export default class ToDoList {
     }
     this.index = 0;
     this.tasks.forEach((task) => {
+
+      // Create li tag
       const li = document.createElement('li');
       li.className = 'task';
       this.index += 1;
       task.index = this.index;
       li.setAttribute('id', `${this.index}`);
-      const input = document.createElement('input');
-      input.setAttribute('type', 'checkbox');
-      input.className = 'checkbox';
-      const p = document.createElement('input');
-      p.setAttribute('type', 'text');
-      p.className = 'description';
-      p.value = task.description;
-      p.addEventListener('focus', () => {
+
+      // Create Checkbox
+      const checkbox = document.createElement('input');
+      checkbox.setAttribute('type', 'checkbox');
+      checkbox.className = 'checkbox';
+
+      // Create Task Description
+      const inputText = document.createElement('input');
+      inputText.setAttribute('type', 'text');
+      inputText.className = 'description';
+      inputText.value = task.description;
+      inputText.addEventListener('focus', () => {
         li.classList.toggle('description-focus');
       });
-      p.addEventListener('blur', () => {
+      inputText.addEventListener('blur', () => {
         li.classList.toggle('description-focus');
       });
-      p.addEventListener('change', () => {
-        this.modifyTask(p);
+      inputText.addEventListener('change', () => {
+        this.modifyTask(inputText);
       });
+
+      // Create Delete Button
       const delIcon = new Image();
       delIcon.src = deleteIcon;
       delIcon.setAttribute('id', 'deleteTask');
@@ -48,8 +56,10 @@ export default class ToDoList {
       delIcon.addEventListener('click', () => {
         this.removeTask(task.index);
       });
-      li.appendChild(input);
-      li.appendChild(p);
+
+      // Append everything
+      li.appendChild(checkbox);
+      li.appendChild(inputText);
       li.appendChild(delIcon);
       ul.appendChild(li);
     });
