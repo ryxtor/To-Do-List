@@ -12,6 +12,10 @@
 - Linters
 - WebPack
 
+## Live Demo
+
+[Live Demo Link](https://ryxtor.github.io/To-Do-List/dist)
+
 ## Author
 
 👤 **Lucas Bonnefon**
