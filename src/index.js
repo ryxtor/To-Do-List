@@ -20,3 +20,9 @@ const btnTask = document.getElementById('enterInput');
 btnTask.addEventListener('click', () => {
   runClass.addTask();
 });
+const enterTask = document.getElementById('input');
+enterTask.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    runClass.addTask();
+  }
+})
