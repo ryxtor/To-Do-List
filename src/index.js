@@ -25,4 +25,4 @@ enterTask.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') {
     runClass.addTask();
   }
-})
+});

@@ -19,7 +19,6 @@ export default class ToDoList {
     }
     this.index = 0;
     this.tasks.forEach((task) => {
-
       // Create li tag
       const li = document.createElement('li');
       li.className = 'task';
