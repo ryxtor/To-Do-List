@@ -1,4 +1,4 @@
-import toDoList from './modules/todoclass.js';
+import ToDoList from './modules/todoclass.js';
 import './style.css';
 import enterIcon from './enter.png';
 
@@ -14,9 +14,9 @@ const createEnterIcon = () => {
 
 createEnterIcon();
 
-const runClass = new toDoList();
+const runClass = new ToDoList();
 runClass.displaytdlist();
 const btnTask = document.getElementById('enterInput');
 btnTask.addEventListener('click', () => {
-runClass.addTask();
-})
+  runClass.addTask();
+});

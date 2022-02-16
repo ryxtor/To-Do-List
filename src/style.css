@@ -79,4 +79,16 @@ body {
 
 .description {
   width: 100%;
+  border: none;
+  font-size: 1rem;
+  height: 48px;
+}
+
+.description:focus-visible {
+  outline: auto 0;
+  background-color: #fffec3;
+}
+
+.description-focus {
+  background-color: #fffec3;
 }

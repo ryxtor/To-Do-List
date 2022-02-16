@@ -2,7 +2,7 @@ import deleteIcon from './delete.png';
 
 const inputdesc = document.getElementById('input');
 const ul = document.getElementById('ul-list');
-export default class toDoList {
+export default class ToDoList {
   constructor(description, index, completed = false) {
     this.description = description;
     this.completed = completed;
@@ -17,7 +17,7 @@ export default class toDoList {
         ul.removeChild(task);
       });
     }
-this.index = 0;
+    this.index = 0;
     this.tasks.forEach((task) => {
       const li = document.createElement('li');
       li.className = 'task';
@@ -27,9 +27,19 @@ this.index = 0;
       const input = document.createElement('input');
       input.setAttribute('type', 'checkbox');
       input.className = 'checkbox';
-      const p = document.createElement('p');
+      const p = document.createElement('input');
+      p.setAttribute('type', 'text');
       p.className = 'description';
-      p.innerHTML = task.description;
+      p.value = task.description;
+      p.addEventListener('focus', () => {
+        li.classList.toggle('description-focus');
+      });
+      p.addEventListener('blur', () => {
+        li.classList.toggle('description-focus');
+      });
+      p.addEventListener('change', () => {
+        this.modifyTask(p);
+      });
       const delIcon = new Image();
       delIcon.src = deleteIcon;
       delIcon.setAttribute('id', 'deleteTask');
@@ -46,9 +56,10 @@ this.index = 0;
   }
 
   addTask() {
-    this.tasks.push(new toDoList(this.description = inputdesc.value));
+    this.tasks.push(new ToDoList(this.description = inputdesc.value));
     localStorage.setItem('tasks', JSON.stringify(this.tasks));
     this.displaytdlist();
+    inputdesc.value = '';
   }
 
   removeTask(n) {
@@ -60,10 +71,16 @@ this.index = 0;
     localStorage.setItem('tasks', JSON.stringify(this.tasks));
     this.displaytdlist();
   }
+
+  modifyTask(taskInput) {
+    const taskChanged = taskInput.parentElement;
+    const taskList = taskChanged.parentElement.children;
+
+    for (let i = 0; i < taskList.length; i += 1) {
+      if (taskList[i] === taskChanged) {
+        this.tasks[i].description = taskInput.value;
+      }
+      localStorage.setItem('tasks', JSON.stringify(this.tasks));
+    }
+  }
 }
-
-
-
-
-
-
