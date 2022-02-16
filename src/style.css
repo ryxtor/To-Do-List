@@ -93,3 +93,9 @@ body {
 .description-focus {
   background-color: #fffec3;
 }
+
+.completeTask {
+  text-decoration: line-through;
+  font-style: italic;
+  color: gray;
+}

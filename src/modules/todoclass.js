@@ -30,6 +30,12 @@ export default class ToDoList {
       const checkbox = document.createElement('input');
       checkbox.setAttribute('type', 'checkbox');
       checkbox.className = 'checkbox';
+      checkbox.addEventListener('change', () => {
+        this.completeTask(checkbox.parentElement);
+      });
+      if (task.completed === true) {
+        checkbox.setAttribute('checked', true);
+      }
 
       // Create Task Description
       const inputText = document.createElement('input');
@@ -45,6 +51,9 @@ export default class ToDoList {
       inputText.addEventListener('change', () => {
         this.modifyTask(inputText);
       });
+      if (task.completed === true) {
+        inputText.classList.add('completeTask');
+      }
 
       // Create Delete Button
       const delIcon = new Image();
@@ -91,5 +100,21 @@ export default class ToDoList {
       }
       localStorage.setItem('tasks', JSON.stringify(this.tasks));
     }
+  }
+
+  completeTask(task) {
+const taskList = task.parentElement.children;
+
+for (let i = 0; i < taskList.length; i++) {
+  if (taskList[i] === task) {
+    if (this.tasks[i].completed === false) {
+      this.tasks[i].completed = true;
+    } else {
+      this.tasks[i].completed = false;
+    }
+  }
+}
+localStorage.setItem('tasks', JSON.stringify(this.tasks));
+this.displaytdlist();
   }
 }
