@@ -9,6 +9,10 @@ export default class ToDoList {
     this.index = index;
   }
 
+  setLocalStorage() {
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
+  }
+
   displaytdlist() {
     this.tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
@@ -71,12 +75,10 @@ export default class ToDoList {
       li.appendChild(delIcon);
       ul.appendChild(li);
     });
-    localStorage.setItem('tasks', JSON.stringify(this.tasks));
   }
 
   addTask() {
     this.tasks.push(new ToDoList(this.description = inputdesc.value));
-    localStorage.setItem('tasks', JSON.stringify(this.tasks));
     this.displaytdlist();
     inputdesc.value = '';
   }
@@ -87,7 +89,6 @@ export default class ToDoList {
         lib.splice(i, 1);
       }
     });
-    localStorage.setItem('tasks', JSON.stringify(this.tasks));
     this.displaytdlist();
   }
 
@@ -99,7 +100,6 @@ export default class ToDoList {
       if (taskList[i] === taskChanged) {
         this.tasks[i].description = taskInput.value;
       }
-      localStorage.setItem('tasks', JSON.stringify(this.tasks));
     }
   }
 
@@ -115,7 +115,6 @@ export default class ToDoList {
         }
       }
     }
-    localStorage.setItem('tasks', JSON.stringify(this.tasks));
     this.displaytdlist();
   }
 
