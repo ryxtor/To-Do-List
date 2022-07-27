@@ -74,11 +74,15 @@ export default class ToDoList {
       li.appendChild(inputText);
       li.appendChild(delIcon);
       ul.appendChild(li);
+
+      // Add todo to localStorage
+      this.setLocalStorage();
     });
   }
 
   addTask() {
     this.tasks.push(new ToDoList(this.description = inputdesc.value));
+    this.setLocalStorage();
     this.displaytdlist();
     inputdesc.value = '';
   }
@@ -89,6 +93,7 @@ export default class ToDoList {
         lib.splice(i, 1);
       }
     });
+    this.setLocalStorage();
     this.displaytdlist();
   }
 
@@ -100,6 +105,7 @@ export default class ToDoList {
       if (taskList[i] === taskChanged) {
         this.tasks[i].description = taskInput.value;
       }
+      this.setLocalStorage();
     }
   }
 
@@ -125,7 +131,7 @@ export default class ToDoList {
         array.push(this.tasks[i]);
       }
     }
-    localStorage.setItem('tasks', JSON.stringify(array));
+    this.setLocalStorage();
     this.displaytdlist();
   }
 }
