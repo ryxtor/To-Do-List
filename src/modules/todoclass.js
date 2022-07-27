@@ -1,4 +1,4 @@
-import deleteIcon from './delete.png';
+import deleteIcon from '../images/delete.png';
 
 const inputdesc = document.getElementById('input');
 const ul = document.getElementById('ul-list');
