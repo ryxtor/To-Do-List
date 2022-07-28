@@ -1,4 +1,4 @@
-import deleteIcon from './delete.png';
+import deleteIcon from '../images/delete.png';
 
 const inputdesc = document.getElementById('input');
 const ul = document.getElementById('ul-list');
@@ -7,6 +7,10 @@ export default class ToDoList {
     this.description = description;
     this.completed = completed;
     this.index = index;
+  }
+
+  setLocalStorage() {
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
   }
 
   displaytdlist() {
@@ -70,13 +74,15 @@ export default class ToDoList {
       li.appendChild(inputText);
       li.appendChild(delIcon);
       ul.appendChild(li);
+
+      // Add todo to localStorage
+      this.setLocalStorage();
     });
-    localStorage.setItem('tasks', JSON.stringify(this.tasks));
   }
 
   addTask() {
     this.tasks.push(new ToDoList(this.description = inputdesc.value));
-    localStorage.setItem('tasks', JSON.stringify(this.tasks));
+    this.setLocalStorage();
     this.displaytdlist();
     inputdesc.value = '';
   }
@@ -87,7 +93,7 @@ export default class ToDoList {
         lib.splice(i, 1);
       }
     });
-    localStorage.setItem('tasks', JSON.stringify(this.tasks));
+    this.setLocalStorage();
     this.displaytdlist();
   }
 
@@ -99,7 +105,7 @@ export default class ToDoList {
       if (taskList[i] === taskChanged) {
         this.tasks[i].description = taskInput.value;
       }
-      localStorage.setItem('tasks', JSON.stringify(this.tasks));
+      this.setLocalStorage();
     }
   }
 
@@ -115,18 +121,18 @@ export default class ToDoList {
         }
       }
     }
-    localStorage.setItem('tasks', JSON.stringify(this.tasks));
+    this.setLocalStorage();
     this.displaytdlist();
   }
 
   delCompletedTasks() {
     const array = [];
-    for (let i = 0; i < this.tasks.length; i += 1) {
-      if (this.tasks[i].completed === false) {
-        array.push(this.tasks[i]);
+    this.tasks.forEach((e) => {
+      if (e.completed === false) {
+        array.push(e);
       }
-    }
-    localStorage.setItem('tasks', JSON.stringify(array));
+    });
+    array.setLocalStorage();
     this.displaytdlist();
   }
 }

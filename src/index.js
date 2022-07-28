@@ -1,6 +1,6 @@
 import ToDoList from './modules/todoclass.js';
 import './style.css';
-import enterIcon from './enter.png';
+import enterIcon from './images/enter.png';
 
 const createEnterIcon = () => {
   const formContainer = document.querySelector('.input-container');

@@ -2,7 +2,7 @@
 
 >  This is a To Do List project.
 
-![screenshot](src/screenshot.png)
+![screenshot](src/images/screenshot.png)
 
 ## Built With
 
