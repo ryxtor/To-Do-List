@@ -121,17 +121,18 @@ export default class ToDoList {
         }
       }
     }
+    this.setLocalStorage();
     this.displaytdlist();
   }
 
   delCompletedTasks() {
     const array = [];
-    for (let i = 0; i < this.tasks.length; i += 1) {
-      if (this.tasks[i].completed === false) {
-        array.push(this.tasks[i]);
+    this.tasks.forEach((e) => {
+      if (e.completed === false) {
+        array.push(e);
       }
-    }
-    this.setLocalStorage();
+    });
+    array.setLocalStorage();
     this.displaytdlist();
   }
 }
